@@ -68,7 +68,7 @@
 			<version>${pagehelper.version}</version>
 		</dependency>
 
-        <!--lombok依赖，配合插件使用-->
+        <!--lombok依赖，配合插件使用 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
