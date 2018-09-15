@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   profiles:
@@ -46,19 +46,19 @@ httpclient:
 
 #日志配置
 logging:
-#  config:
+  config: classpath:logback-spring.xml
 #日志输出类型
 #  pattern:
 #    console:"%d - %msg%n"
 
-  #注：二者不能同时使用，如若同时使用，则只有logging.file生效
-  #默认情况下，日志文件的大小达到10MB时会切分一次，产生新的日志文件，默认级别为：ERROR、WARN、INFO
-  #  path: ../tomcatlogs/
-  #  file: ../tomcatlogs/info.log
-  #  logging.level：日志级别控制前缀，*为包名或Logger名
-  #  LEVEL：选项TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF
-    level:
-     com: debug
+#  注：二者不能同时使用，如若同时使用，则只有logging.file生效
+#  默认情况下，日志文件的大小达到10MB时会切分一次，产生新的日志文件，默认级别为：ERROR、WARN、INFO
+#    path: ../tomcatlogs/
+#    file: ../tomcatlogs/info.log
+#    logging.level：日志级别控制前缀，*为包名或Logger名
+#    LEVEL：选项TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF
+#    level:
+#     com: debug
 #spring:
 #  devtools:
 #    restart:
