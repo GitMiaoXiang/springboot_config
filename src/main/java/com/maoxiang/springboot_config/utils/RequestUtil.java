@@ -1,5 +1,7 @@
 package com.maoxiang.springboot_config.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.ibatis.javassist.*;
 import org.apache.ibatis.javassist.bytecode.CodeAttribute;
 import org.apache.ibatis.javassist.bytecode.LocalVariableAttribute;
@@ -49,18 +51,18 @@ public class RequestUtil {
      * @param request
      * @return
      */
-    public static Integer getRequestType(HttpServletRequest request){
+    public static String getRequestType(HttpServletRequest request){
         if(request==null){
-            return 0;
+            return "";
         }
         String xRequestWith = request.getHeader("X-Requested-With");
-        return xRequestWith == null ? 1 : 2;
+        return xRequestWith == null ? "普通请求" : "ajax请求";
     }
 
     public static Map<String, Object> getJoinPointInfoMap(JoinPoint joinPoint){
-        HashMap<String, Object> joinPointInfo = new HashMap<>();
+        Map<String, Object> joinPointInfo = new HashMap<>();
         String classPath = joinPoint.getTarget().getClass().getName();
-        String methodName = joinPoint.getSignature().getName();\
+        String methodName = joinPoint.getSignature().getName();
         joinPointInfo.put("classPath", classPath);
         joinPointInfo.put("methodName", methodName);
         Class<?> clazz = null;
@@ -78,14 +80,32 @@ public class RequestUtil {
             ctMethod = ctClass.getDeclaredMethod(methodName);
             MethodInfo methodInfo = ctMethod.getMethodInfo();
             CodeAttribute codeAttribute = methodInfo.getCodeAttribute();
-            attr = codeAttribute.getAttribute(LocalVariableAttribute.tag);
+            attr = (LocalVariableAttribute) codeAttribute.getAttribute(LocalVariableAttribute.tag);
             if(attr == null){
                 return joinPointInfo;
             }
             length = ctMethod.getParameterTypes().length;
             pos = Modifier.isStatic(ctMethod.getModifiers())?0:1;
-        }catch (){
-
+        }catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }catch (NotFoundException e){
+            e.printStackTrace();
         }
+        Map<String,Object> map = new HashMap<>();
+        Object[] paramsArgsValues = joinPoint.getArgs();
+        String[] paramsArgsNames = new String[length];
+        for (int i = 0; i<length;i++){
+            paramsArgsNames[i] = attr.variableName(i+pos);
+            String paramsArgsName = attr.variableName(i+pos);
+            if(paramsArgsName.equalsIgnoreCase("request")||
+               paramsArgsName.equalsIgnoreCase("response")||
+               paramsArgsName.equalsIgnoreCase("session")){
+                break;
+            }
+            Object paramsArgsValue = paramsArgsValues[i];
+            map.put(paramsArgsName,paramsArgsValue);
+        }
+        joinPointInfo.put("paramMap", JSON.toJSONString(map, SerializerFeature.DisableCircularReferenceDetect, SerializerFeature.WriteMapNullValue));
+        return joinPointInfo;
     }
 }

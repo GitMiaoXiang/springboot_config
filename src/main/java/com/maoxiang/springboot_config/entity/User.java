@@ -1,6 +1,5 @@
 package com.maoxiang.springboot_config.entity;
 
-import com.maoxiang.springboot_config.Base.BaseEntity;
 import lombok.Data;
 
 import javax.persistence.Id;

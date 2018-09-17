@@ -1,6 +1,5 @@
 package com.maoxiang.springboot_config.service;
 
-import com.maoxiang.springboot_config.Base.IBaseService;
 import com.maoxiang.springboot_config.entity.User;
 
 /**

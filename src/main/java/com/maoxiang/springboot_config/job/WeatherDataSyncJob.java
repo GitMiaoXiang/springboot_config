@@ -14,6 +14,6 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 public class WeatherDataSyncJob extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        log.info("任务执行！");
+//        log.info("任务执行！");
     }
 }

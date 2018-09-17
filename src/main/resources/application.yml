@@ -16,7 +16,7 @@ mybatis:
 
 #通用mapper
 mapper:
-  mappers: com.maoxiang.springboot_config.Base.MyMapper
+  mappers: com.maoxiang.springboot_config.common.MyMapper
   not-empty: false
   identity: MYSQL
 

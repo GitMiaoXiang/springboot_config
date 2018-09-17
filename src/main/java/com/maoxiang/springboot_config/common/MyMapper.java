@@ -1,4 +1,4 @@
-package com.maoxiang.springboot_config.Base;
+package com.maoxiang.springboot_config.common;
 
 import tk.mybatis.mapper.common.Mapper;
 import tk.mybatis.mapper.common.MySqlMapper;

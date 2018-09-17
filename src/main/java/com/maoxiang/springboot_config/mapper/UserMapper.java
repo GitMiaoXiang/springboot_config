@@ -1,6 +1,6 @@
 package com.maoxiang.springboot_config.mapper;
 
-import com.maoxiang.springboot_config.Base.MyMapper;
+import com.maoxiang.springboot_config.common.MyMapper;
 import com.maoxiang.springboot_config.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

@@ -1,4 +1,4 @@
-package com.maoxiang.springboot_config.Base;
+package com.maoxiang.springboot_config.common;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;

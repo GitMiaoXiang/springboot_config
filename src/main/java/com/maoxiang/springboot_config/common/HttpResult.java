@@ -1,4 +1,4 @@
-package com.maoxiang.springboot_config.Base;
+package com.maoxiang.springboot_config.common;
 
 import lombok.Data;
 

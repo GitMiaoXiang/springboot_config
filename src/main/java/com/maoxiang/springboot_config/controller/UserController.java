@@ -1,6 +1,5 @@
 package com.maoxiang.springboot_config.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.maoxiang.springboot_config.constenum.ResponseEnum;
 import com.maoxiang.springboot_config.entity.User;
 import com.maoxiang.springboot_config.service.IUserService;
@@ -30,10 +29,8 @@ public class UserController {
 
     @GetMapping
     public ResultData<List<User>> queryUser(){
-        log.info("=================进Controller了================");
         List<User> users = userService.queryAll();
         ResultData resultData = RestResultGenerator.successResult(users, ResponseEnum.SUCCESS);
-        log.info("=================返回的数据:"+ JSON.toJSONString(resultData)+"=====================");
         return resultData;
     }
 }

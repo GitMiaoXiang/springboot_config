@@ -1,4 +1,4 @@
-package com.maoxiang.springboot_config.Base;
+package com.maoxiang.springboot_config.service;
 
 import com.github.pagehelper.PageInfo;
 
